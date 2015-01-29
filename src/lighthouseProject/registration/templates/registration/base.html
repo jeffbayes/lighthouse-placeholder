@@ -1,0 +1,38 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <link href={%static "style/logDefault.css" %} rel="stylesheet" type="text/css" />
+    <title>{% block title %}{% endblock %}</title>
+</head>
+
+<body>
+    <div id="logo">
+	<h1>Lighthouse <span>Taxonomy</span></h1>
+	<h2>A framework that builds on and improves existing collections of numerical software with
+	    added tools for code generation and the tuning of matrix algebra computations</h2>
+    </div>
+    <div id="menu">
+	<ul>
+	    <li><a href="{% url home %}">Home</a></li>
+	    <li><a href="{% url forumList %}">Forum</a></li>
+	    <li><a href="{% url blogindex %}">Blog</a></li>
+	    <li><a href="">Contact</a></li>
+	    <li><a href="https://code.google.com/p/lighthouse-taxonomy/issues/list" target="_blank">Report Issues</a></li>
+	</ul>
+    </div>
+    <div id="content">
+	<div id="sidebar">
+            {% block content %}{% endblock %}
+	</div>
+    </div>
+    <div id="footer">
+      <p id="legal">Copyright &copy; 2014 The Lighthouse Taxonomy. All Rights Reserved.</p>
+      <p id="links"><a href="">Privacy Policy</a> | <a href="">Terms of Use</a></p>
+    </div>
+</body>
+</html>
+</body>
+</html>

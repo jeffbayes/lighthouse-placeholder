@@ -1,0 +1,213 @@
+<div style="width:100%;">
+    <table style="width:100%; height:180px; border: 0px;">
+        <tr>
+            <td valign="top" bgcolor="#ebf5ff";>
+                <table cellspacing="20" >
+                    <form dojoType="dijit.form.Form" id="scriptForm" name="scriptform" action="" method="POST">
+                    <tr>
+                        <td valign="top">
+                            <label for="scriptEquation"><strong>Equation(s):</strong>
+                            </label>
+                        </td><td>
+                            <textarea id="scriptEquation" required="true" name="scriptEquation"
+                                      cols="30" rows="5" placeHolder="One equation per line"></textarea>
+                        </td>
+                    </tr><tr>
+                        <td>
+                            <label for="kernelName"><strong>Kernel/Function Name:</strong></label>
+                        </td><td>
+                            <input id="kernelName" dojoType="dijit.form.ValidationTextBox"
+                                   type="text" required="true" name="kernelName" 
+                                   missingMessage="Oops! You forgot to name your kernel!" />                            
+                        </td>
+                    </tr><tr>
+                        <td>
+                            <label for="btoArgs"><strong><a href="./args">Commandline args</a> to pass to BTO:</strong></label>
+                        </td>
+                    </tr><tr>
+
+
+                        <td valign="top">
+                            <label for="search_type"><strong>Search type</strong></label>
+                            <div dojoType="dijit.form.DropDownButton"  class="tooltipLink">
+        	    				<span><img src="{{ MEDIA_URL }}Images/question.png" width="16" height="16"/></span>
+		    	        		<div dojoType="dijit.TooltipDialog" id="helpBTOsearchType">
+        						<div class="buttonLink" style="float:right;font-size:small" title="close" tabindex="0" 
+		        					dojoType="dijit.form.Button">[Close]
+				        			<script type="dojo/method" event="onClick">
+						        		dijit.byId('helpBTOsearchType').onCancel();
+							        </script>
+						        </div>
+						            <h2>Search Type</h2>
+						            <div id="helpText_btoSearchType" style="background-color:#FFFFD6;">
+							            <iframe width="500px" height="300px" src="{{ MEDIA_URL }}Help/btoSearchType.html"></iframe>  		 		
+						            </div>
+					            </div>
+				            </div><br />
+                            <input type="radio" id="search_ga" name="search_type" value="1" checked onClick="javascript:show_ga_opts();" />&nbsp;<label for="search_ga">Genetic Algorithm (recommended)</label><br />
+                            <input type="radio" id="search_ex" name="search_type" value="2" onClick="javascript:hide_ga_opts();" />&nbsp;<label for="search_ex">Exhaustive (very long running time)</label><br />
+                            <input type="test" id="limit" value="6" style="width:3em;" />
+                            <label for="limit">Exhaustive search time limit (min)</label><br />
+                            <input type="radio" id="search_rand" name="search_type" value="3" onClick="javascript:hide_ga_opts();" />&nbsp;<label for="search_rand">Random</label><br />
+                            <input type="radio" id="search_ortho" name="search_type" value="4" onClick="javascript:hide_ga_opts();" />&nbsp;<label for="search_ortho">Orthogonal</label><br />
+                            <input type="radio" id="search_thread" name="search_type" value="5" onClick="javascript:hide_ga_opts();" />&nbsp;<label for="search_thread">Thread Search</label>
+                        </td><td valign="top">
+                            <span id="ga_specific">
+                                <strong><i>Genetic Algorithm advanced options</i>:</strong><br />
+                                <input type="checkbox" id="ga_nomaxfuse" />&nbsp;<label for="ga_nomaxfuse">Disable maximum loop fusion</label><br />
+                                <input type="checkbox" id="ga_noglobalthread" />&nbsp;<label for="ga_noglobalthread">Disable global Thread search</label><br />
+                                <input type="checkbox" id="ga_exthread" />&nbsp;<label for="ga_exthread">Additional exhaustive Thread search</label><br />
+                                <input type="text" id="ga_timelimit" value="10" style="width:3em;" />&nbsp;<label for="ga_timelimit">Search time (s)</label><br />
+                                <input type="text" id="ga_popsize" value="10" style="width:3em;" />&nbsp;<label for="ga_popsize">Population size</label><br />
+
+                            </span>
+                        </td>
+                    </tr><tr>
+                        <td valign="top">
+                            <label for="emp_reps"><b>Repetitions for empirical tests</b></label><br />
+                            <input type="text" id="emp_reps" value="5" style="width:3em;" />
+                        </td><td valign="top">
+                            <label for="precision"><strong>Precision</strong></label><br />
+                            <input type="radio" id="precision_double" name="precision" value="1" checked />&nbsp;Double<br />
+                            <input type="radio" id="precision_float"  name="precision" value="2" />&nbsp;Float
+                        </td>
+                    </tr><tr>
+                        <td valign="top">
+<!--                           <input type="checkbox" id="analyticmem" name="analyticmem" />
+                           <label for="analyticmem"><strong>Use Analytic memory model</strong></label>
+                            <div dojoType="dijit.form.DropDownButton"  class="tooltipLink">
+        	    				<span><img src="{{ MEDIA_URL }}Images/question.png" width="16" height="16"/></span>
+		    	        		<div dojoType="dijit.TooltipDialog" id="helpBTOanalytic">
+        						<div class="buttonLink" style="float:right;font-size:small" title="close" tabindex="0" 
+		        					dojoType="dijit.form.Button">[Close]
+				        			<script type="dojo/method" event="onClick">
+						        		dijit.byId('helpBTOanalytic').onCancel();
+							        </script>
+						        </div>
+						            <h2>Analytic Memory Model</h2>
+						            <div id="helpText_btoAnalytic" style="background-color:#FFFFD6;">
+							            <iframe width="500px" height="300px" src="{{ MEDIA_URL }}Help/btoAnalytic.html"></iframe>  		 		
+						            </div>
+					            </div>
+				            </div><br />
+-->
+                            <input type="checkbox" id="correctness" name="correctness" />
+                            <label for="correctness"><strong>Correctness testing</strong></label>
+                             <div dojoType="dijit.form.DropDownButton"  class="tooltipLink">
+        	    				<span><img src="{{ MEDIA_URL }}Images/question.png" width="16" height="16"/></span>
+		    	        		<div dojoType="dijit.TooltipDialog" id="helpBTOcorrectness">
+        						<div class="buttonLink" style="float:right;font-size:small" title="close" tabindex="0" 
+		        					dojoType="dijit.form.Button">[Close]
+				        			<script type="dojo/method" event="onClick">
+						        		dijit.byId('helpBTOcorrectness').onCancel();
+							        </script>
+						        </div>
+						            <h2>Correctness Testing</h2>
+						            <div id="helpText_btoCorrectness" style="background-color:#FFFFD6;">
+							            <iframe width="500px" height="300px" src="{{ MEDIA_URL }}Help/btoCorrectness.html"></iframe>  		 		
+						            </div>
+					            </div>
+				            </div><br />
+
+<!--                            <input type="checkbox" id="nopartition" />
+                            <label for="nopartition"><strong>Disable matrix partitioning</strong></label>
+-->
+                        </td>
+                        <td valign="top">
+                            <label for="testingSize"><strong>Testing size</strong> (start:stop:step)</label>
+                            <div dojoType="dijit.form.DropDownButton"  class="tooltipLink">
+        	    				<span><img src="{{ MEDIA_URL }}Images/question.png" width="16" height="16"/></span>
+		    	        		<div dojoType="dijit.TooltipDialog" id="helpBTOtestingSize">
+        						<div class="buttonLink" style="float:right;font-size:small" title="close" tabindex="0" 
+		        					dojoType="dijit.form.Button">[Close]
+				        			<script type="dojo/method" event="onClick">
+						        		dijit.byId('helpBTOtestingSize').onCancel();
+							        </script>
+						        </div>
+						            <h2>Testing Size</h2>
+						            <div id="helpText_btoTestingSize" style="background-color:#FFFFD6;">
+							            <iframe width="500px" height="300px" src="{{ MEDIA_URL }}Help/btoTestingSize.html"></iframe>  		 		
+						            </div>
+					            </div>
+				            </div><br />
+                            <input type="text" id="test_param" name="test_param" value="3000:3000:1" />
+                        <br />
+<!--                            <label for="threshold"><strong>Threshold</strong></label>
+                            <div dojoType="dijit.form.DropDownButton"  class="tooltipLink">
+        	    				<span><img src="{{ MEDIA_URL }}Images/question.png" width="16" height="16"/></span>
+		    	        		<div dojoType="dijit.TooltipDialog" id="helpBTOthreshold">
+        						<div class="buttonLink" style="float:right;font-size:small" title="close" tabindex="0" 
+		        					dojoType="dijit.form.Button">[Close]
+				        			<script type="dojo/method" event="onClick">
+						        		dijit.byId('helpBTOthreshold').onCancel();
+							        </script>
+						        </div>
+						            <h2>Threshold</h2>
+						            <div id="helpText_btoThreshold" style="background-color:#FFFFD6;">
+							            <iframe width="500px" height="300px" src="{{ MEDIA_URL }}Help/btoThreshold.html"></iframe>  		 		
+						            </div>
+					            </div>
+				            </div><br />
+                            <input type="text" id="threshold" name="threshold" value="0.01" /> -->
+                        </td>
+                    </tr><tr>
+                        <td valign="top" colspan="2">
+                            <label for="level1"><strong>Thread and cache tiling</strong></label>
+                            <div dojoType="dijit.form.DropDownButton"  class="tooltipLink">
+        	    				<span><img src="{{ MEDIA_URL }}Images/question.png" width="16" height="16"/></span>
+		    	        		<div dojoType="dijit.TooltipDialog" id="helpBTOtiling">
+        						<div class="buttonLink" style="float:right;font-size:small" title="close" tabindex="0" 
+		        					dojoType="dijit.form.Button">[Close]
+				        			<script type="dojo/method" event="onClick">
+						        		dijit.byId('helpBTOtiling').onCancel();
+							        </script>
+						        </div>
+						            <h2>Tiling</h2>
+						            <div id="helpText_btoTiling" style="background-color:#FFFFD6;">
+							            <iframe width="500px" height="300px" src="{{ MEDIA_URL }}Help/btoTiling.html"></iframe>  		 		
+						            </div>
+					            </div>
+				            </div><br />
+
+                            <input type="text" id="level1" name="level1" value="thread 2:8:2">&nbsp;Level 1 (outer/primary)<br />
+                            <input type="text" id="level2" name="level2" value="">&nbsp;Level 2 (inner)<br />
+                        </td>
+                    </tr><tr>
+                        <td>
+                            <label for="addtl"><strong>Additional args to send</strong></label><br />
+                            <input type="text" id="addtl" value="" />
+                        </td>
+                    </tr><tr>
+                        <td align="left">
+                            <button class="scriptButton" type="reset" onclick="clearKernelEquation()">
+                                Reset
+                            </button>
+                            <button class="scriptButton" type="submit" name="submitButton" onclick="submitEquation()">
+                                Check Script
+                            </button>
+                        </td>
+                    </tr><tr>
+                        <td colspan="2">
+                            <span id="verify" style="display:none;"><b><i>Please verify the following variable types before submitting. (This parser is not yet perfect!)</i></b></span>
+                            <table id="parameterTable" cellspacing="10">    
+                            </table>
+                        </td>
+                    </tr><tr>
+                        <td>
+                            <span id="infoArgs"></span>
+                        </td>
+                    </tr><tr>
+                        <td colspan="2" align="right">
+                            <button class="scriptButton" type="button" name="Submit" id="codeSubmitButton" style="display:none" onclick="runScript()">
+                               Generate Code with BTO
+                            </button>
+                        </td>
+                    </tr>
+                    </form>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+
+

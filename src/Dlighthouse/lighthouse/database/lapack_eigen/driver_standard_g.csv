@@ -1,0 +1,16 @@
+1,s,geev,no,eigenvectors,QR,no,single,eigenvalues;optionally left right eigenvectors,543
+2,d,geev,no,eigenvectors,QR,no,double,eigenvalues;optionally left right eigenvectors,544
+3,c,geev,yes,eigenvectors,QR,no,single,eigenvalues;optionally left right eigenvectors,587
+4,z,geev,yes,eigenvectors,QR,no,double,eigenvalues;optionally left right eigenvectors,588
+5,s,geevx,no,eigenvectors,QR,yes,single,eigenvalues;optionally left right eigenvectors;condition numbers;balance matrix,545
+6,d,geevx,no,eigenvectors,QR,yes,double,eigenvalues;optionally left right eigenvectors;condition numbers;balance matrix,546
+7,c,geevx,yes,eigenvectors,QR,yes,single,eigenvalues;optionally left right eigenvectors;condition numbers;balance matrix,589
+8,z,geevx,yes,eigenvectors,QR,yes,double,eigenvalues;optionally left right eigenvectors;condition numbers;balance matrix,590
+9,s,gees,no,Schur,,no,single,eigenvalues;Schur form;optionally Schur vectors,547
+10,d,gees,no,Schur,,no,double,eigenvalues;Schur form;optionally Schur vectors,548
+11,c,gees,yes,Schur,,no,single,eigenvalues;Schur form;optionally Schur vectors,591
+12,z,gees,yes,Schur,,no,double,eigenvalues;Schur form;optionally Schur vectors,592
+13,s,geesx,no,Schur,,yes,single,eigenvalues;Schur form;optionally Schur vectors;condition numbers,549
+14,d,geesx,no,Schur,,yes,double,eigenvalues;Schur form;optionally Schur vectors;condition numbers,550
+15,c,geesx,yes,Schur,,yes,single,eigenvalues;Schur form;optionally Schur vectors;condition numbers,593
+16,z,geesx,yes,Schur,,yes,double,eigenvalues;Schur form;optionally Schur vectors;condition numbers,594

@@ -1,0 +1,38 @@
+{% extends "dojango/base_lapack.html" %}
+
+
+<!-- ########### Guided search questions: ###########-->
+{% block dojango_content_guidedSearch %}
+{% include "lighthouse/lapack_le/guided/guidedSearch.html" %}
+{% endblock %}
+
+
+<!-- ########### Guided search result: ###########-->
+{% block dojango_content_search_result %}
+{% include "lighthouse/lapack_le/guided/guidedResult.html" %}
+{% endblock %}
+
+
+<!-- ########### Advanced search questions: ###########-->
+{% block dojango_content_advancedSearch %}
+{% include "lighthouse/lapack_le/advanced/advancedSearch.html" %}
+{% endblock %}
+
+
+<!-- ########### Keyword search: ###########-->
+{% block dojango_content_keywordSearch %}
+{% include "lighthouse/lapack_le/keywordSearch.html" %}
+{% endblock %}
+
+
+<!-- ########### Selected routines: ###########-->
+{% block dojango_content_selected_routines %}
+{% include "lighthouse/lapack_le/selectedRoutines.html" %}
+{% endblock %}
+
+
+<!-- ########### Code Template: ###########-->
+{% block dojango_content_code_template %}
+{% include "lighthouse/lapack_le/codeTemplate.html" %}
+{% endblock %}
+

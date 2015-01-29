@@ -1,0 +1,129 @@
+{% load static from staticfiles %}
+
+{% if advancedSearchMenuForm %}
+<div id="title-div">
+  <table id="icon-table">
+      <tr>
+	  <td id="icon-cell">
+	      <img src={%static "images/advancedSearch.png" %} width="32" height="32"/>
+	  </td>       
+	 <td id="title-cell">
+	      Advanced Search
+	  </td>
+      </tr>
+  </table>    
+</div>
+<br>
+  
+<form id="eigen_advancedMenu" name="advancedMenu" action="/lapack_eigen/advancedForm/" method="post"
+    data-dojo-type="dijit/form/Form" data-dojo-id="myFormThree" encType="multipart/form-data"
+    onSubmit="return formValid();">
+  {% csrf_token %}     
+<!--  <div id="question-div"> 
+    {{ advancedSearchMenuForm }}
+  </div>-->
+  <div id="question-div">
+    <table style="padding:0px; margin:0px; border:0px;">
+	    <tr>
+		<td>
+			<label for="id_advancedSearchMenu_0">
+			<img src={%static "images/arrow.png" %} width="8" height="8"/>
+				<b>Which of the following categories of eigen problems would you like to search?</b>
+			</label>
+		</td>
+	    </tr>
+    </table>
+    <table id="box-table-a" >
+      <thead>
+	  <tr>
+	    <th>Select</th>
+	    <th>Routine class</th>
+	    <th>Problem type</th>
+	    <th>Matrix type</th>
+	  </tr>
+      </thead>
+      <tbody>
+	<tr>
+	  <td><input type="checkbox" name="advancedSearchMenu" value="driver_standard_sh" id="id_advancedSearchMenu_0" /></td>
+	  <td>driver</td>
+	  <td>standard</td>
+	  <td>symmetric/Hermitian</td>
+	</tr>
+	<tr>
+	  <td><input type="checkbox" name="advancedSearchMenu" value="driver_standard_g" id="id_advancedSearchMenu_1" /></td>
+	  <td>driver</td>
+	  <td>standard</td>
+	  <td>general</td>	
+	</tr>
+	<tr>
+	  <td><input type="checkbox" name="advancedSearchMenu" value="driver_generalized_sh" id="id_advancedSearchMenu_2" /></td>
+	  <td>driver</td>
+	  <td>generalized</td>
+	  <td>symmetric/Hermitian</td>
+	</tr>
+	<tr>
+	  <td><input type="checkbox" name="advancedSearchMenu" value="driver_generalized_g" id="id_advancedSearchMenu_3" /></td>
+	  <td>driver</td>
+	  <td>generalized</td>
+	  <td>general</td>
+	</tr>
+	<tr>
+	  <td><input type="checkbox" name="advancedSearchMenu" value="computational_standard_sh" id="id_advancedSearchMenu_4" /></td>
+	  <td>computational</td>
+	  <td>standard</td>
+	  <td>symmetric/Hermitian</td>	
+	</tr>
+	<tr>
+	  <td><input type="checkbox" name="advancedSearchMenu" value="computational_standard_g" id="id_advancedSearchMenu_5" /></td>
+	  <td>computational</td>
+	  <td>standard</td>
+	  <td>general</td>
+	</tr>
+	<tr>
+	  <td><input type="checkbox" name="advancedSearchMenu" value="computational_generalized_sh" id="id_advancedSearchMenu_6" /></td>
+	  <td>computational</td>
+	  <td>generalized</td>
+	  <td>symmetric/Hermitian</td>
+	</tr>
+	<tr>
+	  <td><input type="checkbox" name="advancedSearchMenu" value="computational_generalized_g" id="id_advancedSearchMenu_7" /></td>
+	  <td>computational</td>
+	  <td>generalized</td>
+	  <td>general</td>
+	</tr>
+      </tbody>
+    </table>
+  </div>
+  </br>
+  <div id="button-div">
+    <table style="width:100%; margin: 0px auto;">
+      <tr style="width:100%;">
+	<td style="text-align:left;">       
+	  <button type="button" name="clear" id="clearButton_advanced" class="myButton" title="Clear Search"
+		  onmouseover="showTooltip('tooltip_advanced', 'Clear Search','#cc0000');"
+		  onmouseout="showTooltip('tooltip_advanced','');"
+		  onclick="show_confirm('/lapack_eigen/')">
+	      <img src={%static "images/clear.png" %} width="16" height="16"/> 
+	  </button>       
+	</td>
+	<td style="text-align:center;">
+	  <div id="tooltip_advanced"></div>
+	</td>
+	<td style="text-align:right;">
+	  <button type="submit" name="guided" value="submit" id="submitButton_advanced" title="Submit Answer" class="myButton"
+		  onmouseover="showTooltip('tooltip_advanced', 'Submit', '#009900');"
+		  onmouseout="showTooltip('tooltip_advanced','');">
+	      <img src={%static "images/dialog-ok-4.png" %} width="16" height="16"/>
+	  </button >
+	</td>
+      </tr>
+    </table>    
+  </div>
+  </form>
+	      
+{% else %}
+
+    {% include "lighthouse/lapack_eigen/advanced/advancedSearch.html" %}
+	    
+{% endif %}
+

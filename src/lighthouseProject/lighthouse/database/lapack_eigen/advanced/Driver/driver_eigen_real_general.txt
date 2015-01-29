@@ -1,0 +1,17 @@
+id	precision	name	standard	complex numbers	storage	range	method	eigenvectors	purpose	
+1	s	geev	standard	no	full	No	QR algorithm	original	eigenvalues;optionally left right eigenvectors	587
+2	d	geev	standard	no	full	No	QR algorithm	original	eigenvalues;optionally left right eigenvectors	588
+3	s	geevx	standard	no	full	No	QR algorithm	original	eigenvalues;optionally left right eigenvectors;balance matrix;condition numbers	589
+4	d	geevx	standard	no	full	No	QR algorithm	original	eigenvalues;optionally left right eigenvectors;balance matrix;condition numbers	590
+5	s	gees	standard	no	full	No	N/A	Schur	eigenvalues;Schur form;optionally Schur vectors	591
+6	d	gees	standard	no	full	No	N/A	Schur	eigenvalues;Schur form;optionally Schur vectors	592
+7	s	geesx	standard	no	full	No	N/A	Schur	eigenvalues;Schur form;optionally Schur vectors;condition numbers	593
+8	d	geesx	standard	no	full	No	N/A	Schur	eigenvalues;Schur form;optionally Schur vectors;condition numbers	594
+9	s	ggev	generalized	no	full	No	QZ algorithm	original	eigenvalues;optionally left right eigenvectors	655
+10	d	ggev	generalized	no	full	No	QZ algorithm	original	eigenvalues;optionally left right eigenvectors	656
+11	s	ggevx	generalized	no	full	No	QZ algorithm	original	eigenvalues;optionally left right eigenvectors;balance matrix;condition numbers	657
+12	d	ggevx	generalized	no	full	No	QZ algorithm	original	eigenvalues;optionally left right eigenvectors;balance matrix;condition numbers	658
+13	s	gges	generalized	no	full	No	QZ algorithm	Schur	eigenvalues;generalized real Schur form;optionally left right generalized Schur vectors	659
+14	d	gges	generalized	no	full	No	QZ algorithm	Schur	eigenvalues;generalized real Schur form;optionally left right generalized Schur vectors	660
+15	s	ggesx	generalized	no	full	No	QZ algorithm	Schur	eigenvalues;generalized real Schur form;optionally left right generalized Schur vectors;condition numbers	661
+16	d	ggesx	generalized	no	full	No	QZ algorithm	Schur	eigenvalues;generalized real Schur form;optionally left right generalized Schur vectors;condition numbers	662

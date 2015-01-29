@@ -1,0 +1,300 @@
+/*page style*/
+body {
+	margin:0;
+	padding:0;
+	border:0;			/* This removes the border around the viewport in old versions of IE */
+	width:100%;
+	background:#fff;
+	min-width:600px;    	        /* Minimum width of layout - remove line if not required */
+					/* The min-width property does not work in old versions of Internet Explorer */
+	font-size:90%;
+}
+a {
+	color:#369;
+}
+a:hover {
+	
+	text-decoration:none;
+}
+h1, h2, h3 {
+	margin:.8em 0 .2em 0;
+	padding:0;
+}
+p {
+	margin:.4em 0 .8em 0;
+	padding:0;
+}
+img {
+	margin:10px 0 5px;
+}
+#ads img {
+	display:block;
+	padding-top:10px;
+}
+
+/* Header styles */
+#header {
+	clear:both;
+	width:100%;
+}
+#header {
+	border-bottom:0px solid #000;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;
+}
+#header p,
+#header h1,
+#header h2 {
+	padding:.4em 15px 0 15px;
+	margin:0;
+}
+#header ul {
+	clear:left;
+	float:left;
+	width:100%;
+	list-style:none;
+	margin:10px 0 0 0;
+	padding:0;
+}
+#header ul li {
+	display:inline;
+	list-style:none;
+	margin:0;
+	padding:0;
+}
+#header ul li a {
+	display:block;
+	float:left;
+	margin:0 0 0 1px;
+	padding:5px 12px 3px 12px;
+	text-align:center;
+	background:#f7fafe;
+	color:#134c94;
+	text-decoration:none;
+	position:relative;
+	left:1px;
+	line-height:1.3em;
+	border:2px solid #c9dcfa;
+	border-top-right-radius:5px;
+	border-top-left-radius:5px;
+}
+#header ul li a:hover {
+	background:#e0ecfb;
+	color:#000;
+}
+#header ul li a.active,
+#header ul li a.active:hover {
+	color:#fff;
+	background:#000;
+	font-weight:0;
+}
+#header ul li a span {
+	display:block;
+}
+/* 'widths' sub menu */
+#layoutdims {
+	clear:both;
+	background:#e0ecfb;
+	border-top:4px solid #134c94;
+	margin:0;
+	padding:6px 15px !important;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;	
+}
+/* column container */
+.colmask {
+	margin: 0 auto;
+	width:100%;
+	overflow:hidden;		/* This chops off any overhanging divs */
+}
+/* common column settings */
+.colright,
+.colmid,
+.colleft {
+	margin: 0 auto;
+	width:100%;
+	overflow:hidden;
+}
+.col1,
+.col2,
+.col3 {
+	margin: 0 auto;
+	width:100%;
+	overflow:hidden;
+}
+/* 2 Column (right menu) settings */
+.rightmenu {
+	background:#fff;		/* right column background colour */
+}
+.rightmenu .colleft {
+	right:20%;			/* right column width */
+	background:#fbfbfb;		/* left column background colour */
+}
+.rightmenu .col1 {
+	width:71%;			/* left column content width (left column width minus left and right padding) */
+	left:27%;			/* (right column width) plus (left column left padding) */
+}
+.rightmenu .col2 {
+	width:21%;			/* right column content width (right column width minus left and right padding) */
+	left:31%;			/* (right column width) plus (left column left and right padding) plus (right column left padding) */
+}
+/* Footer styles */
+#footer {
+	clear:both;
+	float:left;
+	width:100%;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 12px;	
+	border-top:1px solid #c9dcfa;
+	border-bottom:2px solid #c9dcfa;
+	background: #e0ecfb;
+}
+#footer p {
+	padding:10px;
+	margin:0;
+}
+
+
+
+/* for "leave a comment" */
+#respond {
+	margin-top: 40px;
+}
+
+#respond input[type='text'],
+#respond input[type='email'], 
+#respond textarea {
+	margin-bottom: 10px;
+	display: block;
+	width: 90%;
+
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-khtml-border-radius: 5px;
+	border-radius: 5px;
+
+	line-height: 1.4em;
+}
+
+
+
+
+/*table style: rounded-corner*/
+#rounded-corner
+{
+        font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+        font-size: 12px;
+        margin: 45px;
+        width: 90%;
+        text-align: left;
+        border-collapse: collapse;
+}
+#rounded-corner thead th.rounded-company
+{
+        background: #b9c9fe url('table-images/left.png') left -1px no-repeat;
+}
+#rounded-corner thead th.rounded-q2
+{
+        background: #b9c9fe url('table-images/right.png') right -1px no-repeat;
+}
+#rounded-corner th
+{
+        padding: 8px;
+        font-weight: normal;
+        font-size: 13px;
+        color: #039;
+        background: #b9c9fe;
+}
+#rounded-corner td
+{
+        padding: 8px;
+        background: #e8edff;
+        border-top: 1px solid #fff;
+        color: #669;
+}
+#rounded-corner tfoot td.rounded-foot-left
+{
+        background: #e8edff url('table-images/botleft.png') left bottom no-repeat;
+}
+#rounded-corner tfoot td.rounded-foot-right
+{
+        background: #e8edff url('table-images/botright.png') right bottom no-repeat;
+}
+#rounded-corner tbody tr:hover td
+{
+        background: #d0dafd;
+}
+
+
+
+/*table style: zebra*/
+
+#hor-zebra
+{
+        font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+        font-size: 12px;
+        margin: 45px;
+        width: 90%;
+        text-align: left;
+        border-collapse: collapse;        
+}
+#hor-zebra th
+{
+        font-size: 14px;
+        font-weight: normal;
+        padding: 10px 8px;
+        color: #039;
+        background: #B2B2B2;
+        border-top-right-radius:5px;
+		border-top-left-radius:5px;		
+}
+#hor-zebra td
+{
+        padding: 8px;
+        color: #A67000;
+}
+#hor-zebra .even
+{
+        background: #f7fafe; 
+}
+
+
+
+
+/*table style: box*/
+
+#box-table-a
+{
+        font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+        font-size: 12px;
+        margin: 45px;
+        width: 480px;
+        text-align: left;
+        border-collapse: collapse;
+}
+#box-table-a th
+{
+        font-size: 14px;
+        font-weight: normal;
+        padding: 20px;
+        background: #b9c9fe;
+        border-top: 4px solid #b9c9fe;
+        border-bottom: 10px solid #fff;
+        color: #039;
+}
+#box-table-a td
+{
+        padding: 20px;
+        background: #e8edff; 
+        border-bottom: 10px solid #fff;
+        color: #669;
+        border-top: 1px solid transparent;
+}
+#box-table-a tr:hover td
+{
+        background: #d0dafd;
+        color: #339;
+}

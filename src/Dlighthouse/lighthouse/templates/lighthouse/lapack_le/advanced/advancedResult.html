@@ -1,0 +1,440 @@
+{% extends "dojango/base_lapack.html" %}
+{% load highlight %}
+
+{% block dojango_content_advancedSearch %}
+<div id="title-div">
+    <table id="icon-table">
+        <tr>
+            <td id="icon-cell">
+                <img src="{{ MEDIA_URL }}Images/advancedSearch.png" width="32" height="32"/>
+            </td>       
+            <td id="title-cell">
+                Advanced Search
+            </td>
+        </tr>
+    </table>    
+</div>
+<br>
+<!-- ########### Advanced Search: Display Checked Items ###########-->
+
+<form name="advanced" action="/lapack_le/advanced/result/" name="frmProb" method="post">
+	{% csrf_token %}		
+		<div style="padding-left:10px;">
+			<img src="{{ MEDIA_URL }}Images/arrow.png" width="8" height="8"/>			
+			<b>Please check <i>at least</i> <u>one</u> box in each cell.</b>
+		</div>
+
+<TABLE id='ver-zebra'>
+
+<!-- Colgroup -->
+<colgroup>
+	<col class="vzebra-odd">
+	<col class="vzebra-even">
+	<col class="vzebra-odd">
+	<col class="vzebra-even">
+</colgroup>
+
+<!-- Table Header -->
+<thead>
+	<tr>
+		<th scope="col">
+			<b>Routine Category</b>
+		</th>
+		{% for item in Question_advanced %}
+		<th>
+			<div><b>{{ item }}</b></div>
+		</th>
+		{% endfor %}
+	</tr>
+</thead>
+
+<tr>
+	<td>
+		<b>Description</b>
+	</td>
+	{% for item in GETS %}
+	<td>
+		{{ item.Description }}
+	</td>
+	{% endfor %}
+</tr>
+
+
+
+<tr>
+	<td>
+		<b>Function</b>
+	</td>
+	{% for item in FunctionGETS %}
+	{% if item.label == 'Tasks:' %}
+	<td>Equation:
+		<ul>
+		{% for choice in EquationGETS.0.field.choices %}
+			<li>
+				<input type="checkbox" name="lapack_le_expertEquation" value="{{choice.0}}"
+				{% if choice.0 in selected_Equation  %} checked="checked" {% endif %}/>
+				<label for="">{{choice.1|safe}}</label>
+			</li>
+		{% endfor %}
+		</ul>
+	   
+	    Task:
+		{{ item }}
+	</td>
+	{% else %}
+	<td>
+		{{ item }}
+	</td>
+	{% endif %}
+	{% endfor %}
+</tr>
+
+
+
+<tr>
+	<td>
+		<b>Complex Numbers</b>
+	</td>
+	{% for item in ComplexGETS %}
+	<td>
+		{{ item }}
+	</td>
+	{% endfor %}
+</tr>
+
+
+<tr>
+	<td>
+		<b>Matrix Type</b>
+	</td>
+	{% for item in MatrixTypeGETS %}
+	<td>
+		{{ item }}
+	</td>
+	{% endfor %}
+</tr>
+
+
+
+<tr>
+	<td>
+		<b>Storage</b>
+	</td>
+	{% for item in StorageTypeGETS %}
+	<td>
+		{{ item }}
+	</td>
+	{% endfor %}
+</tr>
+
+<tr>
+	<td>
+		<b>Precision</b>
+	</td>
+	{% for item in PrecisionGETS %}
+	<td>
+		{{ item }}
+	</td>
+	{% endfor %}
+</tr>
+
+</table>
+
+<div id="button-div">
+      <table style="width:100%; margin: 0px auto;">
+    <tr style="width:100%;">
+      <td style="text-align:left;">       
+        <button type="button" name="clear" id="clearButton" class="myButton" title="Clear Search" onmouseover="showTooltip('tooltip2', 'Clear Search','#cc0000');" onmouseout="showTooltip('tooltip2','');" onclick="return show_confirm()">
+            <img src="{{ MEDIA_URL }}Images/clear.png" width="16" height="16"/> 
+        </button>       
+      </td>     
+      <td style="text-align:center;">
+        <div id="tooltip2"></div>
+      </td>
+      <td style="text-align:right;">
+        <button type="submit" name="Submit" id="submitButton" class="myButton" title="Submit Answer" onmouseover="showTooltip('tooltip2', 'Submit', '#009900');" onmouseout="showTooltip('tooltip2','');" onclick=
+            {% if 'Computational Routines' in Question_advanced %}
+            	{% if 'Guided Driver Routines' not in Question_advanced %}
+            		{% if 'Expert Driver Routines' not in Question_advanced %}            
+			            "return validateComputationalCheckbox(id_lapack_le_computationalFunction_0, id_lapack_le_computationalFunction_1, id_lapack_le_computationalFunction_2, id_lapack_le_computationalFunction_3, id_lapack_le_computationalFunction_4, id_lapack_le_computationalFunction_5, id_lapack_le_computationalFunction_6,
+			            id_lapack_le_computationalComplex_0, id_lapack_le_computationalComplex_1, id_lapack_le_computationalMatrixType_0, id_lapack_le_computationalMatrixType_1,
+			            id_lapack_le_computationalMatrixType_2, id_lapack_le_computationalMatrixType_3,
+			            id_lapack_le_computationalMatrixType_4, id_lapack_le_computationalMatrixType_5, id_lapack_le_computationalStorageType_0, id_lapack_le_computationalStorageType_1,
+			            id_lapack_le_computationalStorageType_2, id_lapack_le_computationalStorageType_3,
+			            id_lapack_le_computationalPrecision_0, id_lapack_le_computationalPrecision_1)"
+			        {% endif %}
+			    {% endif %}
+            {% endif %}
+            {% if 'Computational Routines' not in Question_advanced %}
+            	{% if 'Guided Driver Routines' in Question_advanced %}
+            		{% if 'Expert Driver Routines' not in Question_advanced %}            
+            			"return validateGuidedCheckbox(id_lapack_le_simpleFunction_0, id_lapack_le_simpleComplex_0, id_lapack_le_simpleComplex_1, id_lapack_le_simpleMatrixType_0, id_lapack_le_simpleMatrixType_1, id_lapack_le_simpleMatrixType_2, id_lapack_le_simpleMatrixType_3, id_lapack_le_simpleMatrixType_4, id_lapack_le_simpleStorageType_0, id_lapack_le_simpleStorageType_1, id_lapack_le_simpleStorageType_2, id_lapack_le_simpleStorageType_3, id_lapack_le_simplePrecision_0, id_lapack_le_simplePrecision_1)"                 
+            		{% endif %}
+			    {% endif %}
+            {% endif %}
+            {% if 'Computational Routines' not in Question_advanced %}
+            	{% if 'Guided Driver Routines' not in Question_advanced %}
+            		{% if 'Expert Driver Routines' in Question_advanced %}            
+           				"return validateExpertCheckbox(id_lapack_le_expertEquation_0, id_lapack_le_expertEquation_1, id_lapack_le_expertEquation_2, id_lapack_le_expertFunction_0, id_lapack_le_expertFunction_1, id_lapack_le_expertFunction_2, id_lapack_le_expertFunction_3, id_lapack_le_expertComplex_0, id_lapack_le_expertComplex_1, id_lapack_le_expertMatrixType_0, id_lapack_le_expertMatrixType_1, id_lapack_le_expertMatrixType_2, id_lapack_le_expertMatrixType_3, id_lapack_le_expertMatrixType_4, id_lapack_le_expertStorageType_0, id_lapack_le_expertStorageType_1, id_lapack_le_expertStorageType_2, id_lapack_le_expertStorageType_3, id_lapack_le_expertPrecision_0, id_lapack_le_expertPrecision_1)"                 
+            		{% endif %}
+			    {% endif %}
+            {% endif %}
+            {% if 'Computational Routines' in Question_advanced %}
+            	{% if 'Guided Driver Routines' in Question_advanced %}
+            		{% if 'Expert Driver Routines' not in Question_advanced %}            
+           				"return validateComputationalGuidedCheckbox(id_lapack_le_computationalFunction_0, id_lapack_le_computationalFunction_1, id_lapack_le_computationalFunction_2, id_lapack_le_computationalFunction_3, id_lapack_le_computationalFunction_4, id_lapack_le_computationalFunction_5, id_lapack_le_computationalFunction_6, id_lapack_le_computationalComplex_0, id_lapack_le_computationalComplex_1, id_lapack_le_computationalMatrixType_0, id_lapack_le_computationalMatrixType_1, id_lapack_le_computationalMatrixType_2, id_lapack_le_computationalMatrixType_3, id_lapack_le_computationalMatrixType_4, id_lapack_le_computationalMatrixType_5, id_lapack_le_computationalStorageType_0, id_lapack_le_computationalStorageType_1, id_lapack_le_computationalStorageType_2, id_lapack_le_computationalStorageType_3, id_lapack_le_computationalPrecision_0, id_lapack_le_computationalPrecision_1, id_lapack_le_simpleFunction_0, id_lapack_le_simpleComplex_0, id_lapack_le_simpleComplex_1, id_lapack_le_simpleMatrixType_0, id_lapack_le_simpleMatrixType_1, id_lapack_le_simpleMatrixType_2, id_lapack_le_simpleMatrixType_3, id_lapack_le_simpleMatrixType_4, id_lapack_le_simpleStorageType_0, id_lapack_le_simpleStorageType_1, id_lapack_le_simpleStorageType_2, id_lapack_le_simpleStorageType_3, id_lapack_le_simplePrecision_0, id_lapack_le_simplePrecision_1)"
+            		{% endif %}
+			    {% endif %}
+            {% endif %}
+            {% if 'Computational Routines' in Question_advanced %}
+            	{% if 'Guided Driver Routines' not in Question_advanced %}
+            		{% if 'Expert Driver Routines' in Question_advanced %}            
+           				"return validateComputationalExpertCheckbox(id_lapack_le_computationalFunction_0, id_lapack_le_computationalFunction_1, id_lapack_le_computationalFunction_2, id_lapack_le_computationalFunction_3, id_lapack_le_computationalFunction_4, id_lapack_le_computationalFunction_5, id_lapack_le_computationalFunction_6, id_lapack_le_computationalComplex_0, id_lapack_le_computationalComplex_1, id_lapack_le_computationalMatrixType_0, id_lapack_le_computationalMatrixType_1, id_lapack_le_computationalMatrixType_2, id_lapack_le_computationalMatrixType_3, id_lapack_le_computationalMatrixType_4, id_lapack_le_computationalMatrixType_5, id_lapack_le_computationalStorageType_0, id_lapack_le_computationalStorageType_1, id_lapack_le_computationalStorageType_2, id_lapack_le_computationalStorageType_3, id_lapack_le_computationalPrecision_0, id_lapack_le_computationalPrecision_1, id_lapack_le_expertEquation_0, id_lapack_le_expertEquation_1, id_lapack_le_expertEquation_2,, id_lapack_le_expertFunction_0, id_lapack_le_expertFunction_1, id_lapack_le_expertFunction_2, id_lapack_le_expertFunction_3, id_lapack_le_expertComplex_0, id_lapack_le_expertComplex_1, id_lapack_le_expertMatrixType_0, id_lapack_le_expertMatrixType_1, id_lapack_le_expertMatrixType_2, id_lapack_le_expertMatrixType_3, id_lapack_le_expertMatrixType_4, id_lapack_le_expertStorageType_0, id_lapack_le_expertStorageType_1, id_lapack_le_expertStorageType_2, id_lapack_le_expertStorageType_3, id_lapack_le_expertPrecision_0, id_lapack_le_expertPrecision_1)"
+            		{% endif %}
+			    {% endif %}
+            {% endif %}
+            {% if 'Computational Routines' not in Question_advanced %}
+            	{% if 'Guided Driver Routines' in Question_advanced %}
+            		{% if 'Expert Driver Routines' in Question_advanced %}            
+           				"return validateGuidedExpertCheckbox(id_lapack_le_simpleFunction_0, id_lapack_le_simpleComplex_0, id_lapack_le_simpleComplex_1, id_lapack_le_simpleMatrixType_0, id_lapack_le_simpleMatrixType_1, id_lapack_le_simpleMatrixType_2, id_lapack_le_simpleMatrixType_3, id_lapack_le_simpleMatrixType_4, id_lapack_le_simpleStorageType_0, id_lapack_le_simpleStorageType_1, id_lapack_le_simpleStorageType_2, id_lapack_le_simpleStorageType_3, id_lapack_le_simplePrecision_0, id_lapack_le_simplePrecision_1, id_lapack_le_expertEquation_0, id_lapack_le_expertEquation_1, id_lapack_le_expertEquation_2, id_lapack_le_expertFunction_0, id_lapack_le_expertFunction_1, id_lapack_le_expertFunction_2, id_lapack_le_expertFunction_3, id_lapack_le_expertComplex_0, id_lapack_le_expertComplex_1, id_lapack_le_expertMatrixType_0, id_lapack_le_expertMatrixType_1, id_lapack_le_expertMatrixType_2, id_lapack_le_expertMatrixType_3, id_lapack_le_expertMatrixType_4, id_lapack_le_expertStorageType_0, id_lapack_le_expertStorageType_1, id_lapack_le_expertStorageType_2, id_lapack_le_expertStorageType_3, id_lapack_le_expertPrecision_0, id_lapack_le_expertPrecision_1)"
+            		{% endif %}
+			    {% endif %}
+            {% endif %}
+            {% if 'Computational Routines' in Question_advanced %}
+            	{% if 'Guided Driver Routines' in Question_advanced %}
+            		{% if 'Expert Driver Routines' in Question_advanced %}            
+           				"return validateComputationalGuidedExpertCheckbox(id_lapack_le_computationalFunction_0, id_lapack_le_computationalFunction_1, id_lapack_le_computationalFunction_2, id_lapack_le_computationalFunction_3, id_lapack_le_computationalFunction_4, id_lapack_le_computationalFunction_5, id_lapack_le_computationalFunction_6, id_lapack_le_computationalComplex_0, id_lapack_le_computationalComplex_1, id_lapack_le_computationalMatrixType_0, id_lapack_le_computationalMatrixType_1, id_lapack_le_computationalMatrixType_2, id_lapack_le_computationalMatrixType_3, id_lapack_le_computationalMatrixType_4, id_lapack_le_computationalMatrixType_5, id_lapack_le_computationalStorageType_0, id_lapack_le_computationalStorageType_1, id_lapack_le_computationalStorageType_2, id_lapack_le_computationalStorageType_3, id_lapack_le_computationalPrecision_0, id_lapack_le_computationalPrecision_1, id_lapack_le_simpleFunction_0, id_lapack_le_simpleComplex_0, id_lapack_le_simpleComplex_1, id_lapack_le_simpleMatrixType_0, id_lapack_le_simpleMatrixType_1, id_lapack_le_simpleMatrixType_2, id_lapack_le_simpleMatrixType_3, id_lapack_le_simpleMatrixType_4, id_lapack_le_simpleStorageType_0, id_lapack_le_simpleStorageType_1, id_lapack_le_simpleStorageType_2, id_lapack_le_simpleStorageType_3, id_lapack_le_simplePrecision_0, id_lapack_le_simplePrecision_1, id_lapack_le_expertEquation_0, id_lapack_le_expertEquation_1, id_lapack_le_expertEquation_2, id_lapack_le_expertFunction_0, id_lapack_le_expertFunction_1, id_lapack_le_expertFunction_2, id_lapack_le_expertFunction_3, id_lapack_le_expertComplex_0, id_lapack_le_expertComplex_1, id_lapack_le_expertMatrixType_0, id_lapack_le_expertMatrixType_1, id_lapack_le_expertMatrixType_2, id_lapack_le_expertMatrixType_3, id_lapack_le_expertMatrixType_4, id_lapack_le_expertStorageType_0, id_lapack_le_expertStorageType_1, id_lapack_le_expertStorageType_2, id_lapack_le_expertStorageType_3, id_lapack_le_expertPrecision_0, id_lapack_le_expertPrecision_1)"
+            		{% endif %}
+			    {% endif %}
+            {% endif %}
+            >
+            <img src="{{ MEDIA_URL }}Images/dialog-ok-4.png" width="16" height="16"/>
+        </button >
+      </td>
+    </tr>
+      </table>
+  </div>
+</form>
+
+{% endblock %}
+<!-- ########################################################################################################## -->
+
+
+<!-- ########### Advanced Search Result: ###########-->
+
+{% block dojango_content_search_result %}
+
+<div id="title-div">
+	<table style="width: 100%; border: 0px solid;">
+		<tr>
+			<td style="text-align:left; padding-left:5px; width:24px;">
+				<img src="{{ MEDIA_URL }}Images/edit-find-10.png" width="32" height="32"/>
+			</td>		
+			<td style="text-align:left">
+				Lighthouse found the following routine(s) for you:
+			</td>
+		</tr>
+	</table>	
+</div>
+
+<br>
+
+<TABLE id="table_main">
+
+	<TR >
+	<table id="routineListNode" class="advancedResult" >
+	<tr >
+	<th>Category</th>
+	<th>Description</th> 
+	<th>Equation</th>
+	<th>Task</th>
+	<th>Complex Numbers</th>
+	<th>Matrix Type</th>
+	<th>Storage Type</th>
+	<th>Precision</th>  
+	<th>Routine Name</th>
+	</tr>
+
+{% for model, value in Results.items %}
+	{% for list in value %}
+		{% if list.items.2.1 %}
+			{% for routine in list.items.2.1 %}
+				{% if routine not in alreadySelectedRoutines %}
+				<tr class="dojoDndItem"
+				    id="{% for routine in list.items.2.1 %}{{ routine.thePrecision|upper }}{{ routine.routineName|upper }}"
+				    detail="{{ routine.thePrecision }}_{{ routine.routineName }}_{{ routine.matrixType }}_{{ routine.storageType }}_{{ routine.id }}_{{routine.url }}{% endfor %}">
+				<td class="routineInfo">{{ model|cut:"lapack_le_"|capfirst }}</td>
+				<td class="routineInfo">{{ list.items.7.1 }}</td>
+				<td class="routineInfo">{{ list.items.3.1|safe }}</td>
+				<td class="routineInfo">{{ list.items.0.1 }}</td>
+				<td class="routineInfo">{{ list.items.4.1 }}</td>
+				<td class="routineInfo">{{ list.items.5.1 }}</td>
+				<td class="routineInfo">{{ list.items.1.1 }}</td>
+				<td class="routineInfo">{{ list.items.6.1 }}</td>
+				<td style="padding: 0px;">
+					{% if list.items.2.1 %}
+						{% for routine in list.items.2.1 %}
+						<div id="sel_{{ routine.thePrecision|upper }}{{ routine.routineName|upper }}"
+						    detail="{{ routine.thePrecision }}_{{ routine.routineName }}_{{ routine.matrixType }}_{{ routine.storageType }}_{{ routine.id }}_{{routine.url }}"
+						    style="list-style-type: none;"> 
+							<div class="routineName">			
+								<table id="tb_{{ routine.thePrecision|upper }}{{ routine.routineName|upper }}" style="border-radius: 5px;">
+									<tr>
+										<td class="hiddenStuff">
+											<input type="checkbox" name="routines"
+											       value="{{ routine.thePrecision }}_{{ routine.routineName }}_{{ routine.matrixType }}_{{ routine.storageType }}_{{ routine.id }}_{{ routine.url }}"
+											       id="cb_{{ routine.thePrecision|upper }}{{ routine.routineName|upper }}"/>
+											       <!--onclick="checkChanged('{{ routine.thePrecision|upper }}{{ routine.routineName|upper }}', selectedRoutineNames, selectedRoutine_session, uncheckedRoutines);"/>-->
+										</td>
+										<td style="font-weight: bold;" title="Drag and drop in Work Area for code generation">
+											{{ routine.thePrecision|upper }}{{ routine.routineName|upper }}
+										</td>
+										<td >
+											<img src="{{ MEDIA_URL }}Images/question.png" width="16" height="16" title="About this routine"
+											     onclick="dijit.byId('adv_{{ routine.id }}').show()"/>	
+										</td>
+							    			<td class="hiddenStuff">
+											<img src="{{ MEDIA_URL }}Images/remove.png" width="12" height="12" title="Delete"
+											     onclick="allRoutines_session = removeRoutine('sel_{{ routine.thePrecision|upper }}{{ routine.routineName|upper }}', allRoutines_session)"/>
+										</td>
+										<td class="hiddenStuff">                                            
+											<img src="{{ MEDIA_URL }}Images/move.png" width="15" height="15" title="Move up and down"
+											     onclick="selectedRoutine = selectRoutine(selectedRoutine, '{{ routine.thePrecision|upper }}{{ routine.routineName|upper }}');"/>
+										</td>
+									</tr>
+								</table>	
+							</div>
+						    		
+						    <div class="dijitHidden">
+							    <div id="adv_{{ routine.id }}" dojoType="dijit.Dialog" title="Routine Info - {{ routine.thePrecision|upper }}{{ routine.routineName|upper }}">
+								    <div align="center">
+									    <table id="table_main" width="80%" border = "1">
+										    <tr>
+										    <th>Precision</th>
+										    <th>Routine Name</th>
+										    <th>Matrix Type</th>
+										    <th>Storage</th>
+										    </tr>
+										    <tr>
+										    <td>{{ routine.thePrecision|upper }}</td>
+										    <td>{{ routine.routineName|upper }}</td> 
+										    <td>{{ routine.matrixType }}</td> 
+										    <td>{{ routine.storageType }}</td>      
+										    </tr>
+									    </table><br/>
+									    <iframe src="{{ MEDIA_URL }}{{ routine.url }}" width="750px" height="400px"></iframe><br/></br> 
+									    <button onClick="dijit.byId('adv_{{ routine.id }}').hide()">Close</button>
+								    </div>
+							    </div>
+						    </div>
+						</div>
+					    {% endfor %}	    
+					{% endif %}		  
+				</td> 
+				</tr>
+				{% else %}
+				<tr class="notDndItem" style="cursor: pointer; background: #ddd;"
+				    id="{% for routine in list.items.2.1 %}{{ routine.thePrecision|upper }}{{ routine.routineName|upper }}"
+				    detail="{{ routine.thePrecision }}_{{ routine.routineName }}_{{ routine.matrixType }}_{{ routine.storageType }}_{{ routine.id }}_{{routine.url }}{% endfor %}">
+				<td class="routineInfo">{{ model|cut:"lapack_le_"|capfirst }}</td>
+				<td class="routineInfo">{{ list.items.7.1 }}</td>
+				<td class="routineInfo">{{ list.items.3.1|safe }}</td>
+				<td class="routineInfo">{{ list.items.0.1 }}</td>
+				<td class="routineInfo">{{ list.items.4.1 }}</td>
+				<td class="routineInfo">{{ list.items.5.1 }}</td>
+				<td class="routineInfo">{{ list.items.1.1 }}</td>
+				<td class="routineInfo">{{ list.items.6.1 }}</td>
+				<td style="padding: 0px;">
+				{% if list.items.2.1 %}
+					{% for routine in list.items.2.1 %}
+					<div id="nsel_{{ routine.thePrecision|upper }}{{ routine.routineName|upper }}"
+					    detail="{{ routine.thePrecision }}_{{ routine.routineName }}_{{ routine.matrixType }}_{{ routine.storageType }}_{{ routine.id }}_{{routine.url }}"
+					     style="list-style-type: none;"> 
+						<div class="routineName">			
+							<table id="ntb_{{ routine.thePrecision|upper }}{{ routine.routineName|upper }}" style="border-radius: 5px;">
+								<tr>
+									<td class="hiddenStuff">
+										<input type="checkbox" name="routines"
+										       value="{{ routine.thePrecision }}_{{ routine.routineName }}_{{ routine.matrixType }}_{{ routine.storageType }}_{{ routine.id }}_{{ routine.url }}"
+										       id="ncb_{{ routine.thePrecision|upper }}{{ routine.routineName|upper }}"/>
+										       <!--onclick="checkChanged('{{ routine.thePrecision|upper }}{{ routine.routineName|upper }}', selectedRoutineNames, selectedRoutine_session, uncheckedRoutines);"/>-->
+									</td>
+									<td style="font-weight: bold;">
+										{{ routine.thePrecision|upper }}{{ routine.routineName|upper }} 
+									</td>
+									<td >
+										<font size="1" color="blue">(selected)</font>
+									</td>
+								</tr>
+							</table>	
+						</div>
+					    		
+					    <div class="dijitHidden">
+						    <div id="nadv_{{ routine.id }}" dojoType="dijit.Dialog" title="Routine Info - {{ routine.thePrecision|upper }}{{ routine.routineName|upper }}">
+							    <div align="center">
+								    <table id="table_main" width="80%" border = "1">
+									    <tr>
+									    <th>Precision</th>
+									    <th>Routine Name</th>
+									    <th>Matrix Type</th>
+									    <th>Storage</th>
+									    </tr>
+									    <tr>
+									    <td>{{ routine.thePrecision|upper }}</td>
+									    <td>{{ routine.routineName|upper }}</td> 
+									    <td>{{ routine.matrixType }}</td> 
+									    <td>{{ routine.storageType }}</td>      
+									    </tr>
+								    </table><br/>
+								    <iframe src="{{ MEDIA_URL }}{{ routine.url }}" width="750px" height="400px"></iframe><br/></br> 
+								    <button onClick="dijit.byId('nadv_{{ routine.id }}').hide()">Close</button>
+							    </div>
+						    </div>
+					    </div>
+					</div>
+					{% endfor %}	    
+				{% endif %}		  
+				</td> 
+				</tr>
+				{% endif %}		  
+			{% endfor %}
+		{% endif %}		  
+	{% endfor %}
+{% endfor %}
+</table>
+</TR> 
+</TABLE>
+{% endblock %}
+
+{% comment %}
+ There is a bug in {% cycle ... %} 
+{% endcomment %}
+
+
+<!-- ########### Guided search questions: ###########-->
+{% block dojango_content_guidedSearch %}
+{% include "lighthouse/lapack_le/guided/guidedSearch.html" %}
+{% endblock %}
+
+
+<!-- ########### Keyword search: ###########-->
+{% block dojango_content_keywordSearch %}
+{% include "lighthouse/lapack_le/keywordSearch.html" %}
+{% endblock %}
+
+
+<!-- ########### Selected Routines: ###########-->
+{% block dojango_content_selected_routines %}
+{% include "lighthouse/lapack_le/selectedRoutines.html" %}
+<script type="text/javascript">
+	window.onload = function () {
+		dojo.style(dojo.byId('selectedListNode'), "display", "block");
+	}
+</script>
+{% endblock %}
+
+<!-- ########### Code Template: ###########-->
+{% block dojango_content_code_template %}
+{% include "lighthouse/lapack_le/codeTemplate.html" %}
+{% endblock %}
+

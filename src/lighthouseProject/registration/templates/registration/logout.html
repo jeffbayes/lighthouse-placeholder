@@ -1,0 +1,14 @@
+{% extends "registration/base.html" %}
+
+{% block title %}Logged out{% endblock %}
+
+{% block content %}
+        <div style="font-family: sans-serif; font-size: 16px;">
+            <h3>You've been logged out!</h3>
+	    <br>
+            <p>Thank you for using Lighthouse Taxonomy. </p>
+	    <p>Login again <a STYLE="text-decoration: none" href="{% url auth_login %}">here</a>.</p>
+
+        </div>        
+    </div>    
+{% endblock %}
